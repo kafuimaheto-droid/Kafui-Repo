@@ -1,0 +1,110 @@
+table Sheet1
+	lineageTag: 12161536-d931-4a42-91e1-6c71ee7d1781
+
+	column OrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: 655c23c7-8887-44b9-8491-31b00e065da7
+		summarizeBy: count
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e6d5371d-e58d-4693-a5f6-15d1e869de51
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 54a08842-27a8-49d1-898f-101d7aed501f
+			defaultHierarchy: LocalDateTable_6b525b91-c6f8-413e-8aa5-c59e1f9536f3.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Region
+		dataType: string
+		lineageTag: 8e7b0114-52a3-4dac-a842-cc71d2cd5586
+		summarizeBy: none
+		sourceColumn: Region
+
+		annotation SummarizationSetBy = Automatic
+
+	column SalesRep
+		dataType: string
+		lineageTag: ec7426a7-8f6c-4a38-95db-021f8328acd2
+		summarizeBy: none
+		sourceColumn: SalesRep
+
+		annotation SummarizationSetBy = Automatic
+
+	column Product
+		dataType: string
+		lineageTag: a4991aaa-5f1b-4415-9fdb-c1c8ca5d0b11
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: c33d028b-c5eb-47a7-ac2e-5c9e7c04cc56
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitsSold
+		dataType: int64
+		formatString: 0
+		lineageTag: c0a588bf-d366-4468-9d0c-0d8ed74fe640
+		summarizeBy: sum
+		sourceColumn: UnitsSold
+
+		annotation SummarizationSetBy = Automatic
+
+	column UnitPrice
+		dataType: int64
+		formatString: 0
+		lineageTag: e4bc5780-4dc6-4d22-ae2b-b86d0085d343
+		summarizeBy: sum
+		sourceColumn: UnitPrice
+
+		annotation SummarizationSetBy = Automatic
+
+	column Revenue
+		dataType: int64
+		formatString: 0
+		lineageTag: d57eb21b-2c9b-4370-8b87-52b022c3884e
+		summarizeBy: sum
+		sourceColumn: Revenue
+
+		annotation SummarizationSetBy = Automatic
+
+	column CustomerSatisfaction
+		dataType: double
+		lineageTag: 9933522f-931a-487b-b11d-e1c1abd07cbb
+		summarizeBy: sum
+		sourceColumn: CustomerSatisfaction
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition Sheet1 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("C:\Users\kafui.aheto\Downloads\Dummy_Sales_Dataset.xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"OrderID", Int64.Type}, {"Date", type date}, {"Region", type text}, {"SalesRep", type text}, {"Product", type text}, {"Category", type text}, {"UnitsSold", Int64.Type}, {"UnitPrice", Int64.Type}, {"Revenue", Int64.Type}, {"CustomerSatisfaction", type number}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
