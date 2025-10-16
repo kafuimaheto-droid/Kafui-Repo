@@ -3,7 +3,7 @@
   "version": "4.0",
   "datasetReference": {
     "byPath": {
-      "path": "../PBIP Test.SemanticModel"
+      "path": "../PBIP.SemanticModel"
     }
   }
 }

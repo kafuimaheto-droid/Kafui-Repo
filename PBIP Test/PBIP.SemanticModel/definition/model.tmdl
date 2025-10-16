@@ -8,13 +8,13 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 1
 
+annotation PBI_QueryOrder = ["Table"]
+
 annotation PBI_ProTooling = ["DevMode"]
 
-annotation PBI_QueryOrder = ["Sheet1"]
-
-ref table Sheet1
-ref table DateTableTemplate_6680691c-29d8-4b1a-8f00-e40833ace373
-ref table LocalDateTable_6b525b91-c6f8-413e-8aa5-c59e1f9536f3
+ref table Table
+ref table DateTableTemplate_53a33fcb-de7e-45cf-b7ff-30d09ec1cc20
+ref table LocalDateTable_95c559ad-5082-4fd6-9633-98831e35fb62
 
 ref cultureInfo en-US
 

@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
   "metadata": {
     "type": "SemanticModel",
-    "displayName": "PBIP Test"
+    "displayName": "PBIP"
   },
   "config": {
     "version": "2.0",
-    "logicalId": "bc67ac66-b307-4034-81c3-e22d80b2cd80"
+    "logicalId": "9d02958b-acb1-43b9-bc8f-1875d02248e6"
   }
 }

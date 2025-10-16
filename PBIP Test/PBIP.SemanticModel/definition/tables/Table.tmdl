@@ -1,0 +1,73 @@
+table Table
+	lineageTag: c1e04b77-9718-46ae-bf09-dbf7ccd63a46
+
+	column OrderID
+		dataType: int64
+		formatString: 0
+		lineageTag: 151557e9-4e14-4843-8cf9-d61bcf8504ea
+		summarizeBy: count
+		sourceColumn: OrderID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f1190ff4-dd75-49e7-b7d9-68968336cb9e
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: c7a399bc-1cd3-4293-8c88-05d312ef8663
+			defaultHierarchy: LocalDateTable_95c559ad-5082-4fd6-9633-98831e35fb62.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Product
+		dataType: string
+		lineageTag: d89568aa-850f-45e4-8f61-3c2678e811f0
+		summarizeBy: none
+		sourceColumn: Product
+
+		annotation SummarizationSetBy = Automatic
+
+	column Category
+		dataType: string
+		lineageTag: cea35589-d419-48f4-baf7-5ec7a9306394
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Unit Price'
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c6d724d-d166-4db8-aa88-7fdc21c28a25
+		summarizeBy: sum
+		sourceColumn: Unit Price
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Units Sold'
+		dataType: int64
+		formatString: 0
+		lineageTag: 75a700cb-9bd7-4826-bcac-cafee09b794c
+		summarizeBy: sum
+		sourceColumn: Units Sold
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Table = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("Zc7BCsMgDAbgd/HcQpLWzp3Hdtpg9+KhFKHCpmLt+y8KgqyXmB/zkcyzQAAUnSAg2QP2MHF4LiH5wM39Y9YUvbPrzkkBcJVCd4VRyy4cbttiI7+PIzqbjmi4R8pGVTO0RpVV3/BHRpkdVDK25MrhvXlnTsdN5TikymTDMH+9eDL5eIJU4CC0/gE=", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [OrderID = _t, Date = _t, Product = _t, Category = _t, #"Unit Price" = _t, #"Units Sold" = _t]),
+				    #"Changed Type" = Table.TransformColumnTypes(Source,{{"OrderID", Int64.Type}, {"Date", type date}, {"Product", type text}, {"Category", type text}, {"Unit Price", Int64.Type}, {"Units Sold", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
