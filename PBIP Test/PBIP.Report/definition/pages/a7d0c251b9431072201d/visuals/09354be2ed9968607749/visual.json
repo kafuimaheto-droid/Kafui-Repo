@@ -119,20 +119,6 @@
               },
               "queryRef": "Sum(Table.Units Sold)",
               "nativeQueryRef": "Units Sold"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "Table"
-                    }
-                  },
-                  "Property": "Category"
-                }
-              },
-              "queryRef": "Table.Category",
-              "nativeQueryRef": "Category"
             }
           ]
         }
@@ -169,20 +155,6 @@
               }
             },
             "Property": "Product"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "ed81eed7479174d7e227",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Table"
-              }
-            },
-            "Property": "Category"
           }
         },
         "type": "Categorical"
